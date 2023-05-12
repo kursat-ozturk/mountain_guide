@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //-----GLOBAL VARIABLES-----
-final Color mainColor = Color(0xFFFF5656);
+const Color mainColor = Color(0xFF3a5a40);
 
 final List<MountModel> mountItems = [
   MountModel(
@@ -51,7 +51,7 @@ final List<CategoryModel> categories = [
 //-----MAIN METHOD-----
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashPage(),
     ),
@@ -61,26 +61,28 @@ void main() {
 //-----PAGES-----
 // splash page
 class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => MountsApp()));
+          .push(MaterialPageRoute(builder: (context) => const MountsApp()));
     });
 
     return Container(
       color: mainColor,
       child: Stack(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.center,
             child: Icon(Icons.terrain, color: Colors.white, size: 90),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(bottom: 80),
-              child: CircularProgressIndicator(
+              margin: const EdgeInsets.only(bottom: 80),
+              child: const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ),
@@ -93,6 +95,8 @@ class SplashPage extends StatelessWidget {
 
 // landing page
 class MountsApp extends StatelessWidget {
+  const MountsApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,19 +104,20 @@ class MountsApp extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Center(child: Icon(Icons.terrain, color: mainColor, size: 40)),
-        actions: [SizedBox(width: 40, height: 40)],
-        iconTheme: IconThemeData(color: mainColor),
+        title: const Center(
+            child: Icon(Icons.terrain, color: mainColor, size: 40)),
+        actions: const [SizedBox(width: 40, height: 40)],
+        iconTheme: const IconThemeData(color: mainColor),
       ),
       drawer: Drawer(
         child: Container(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           color: mainColor,
           alignment: Alignment.bottomLeft,
-          child: Icon(Icons.terrain, color: Colors.white, size: 80),
+          child: const Icon(Icons.terrain, color: Colors.white, size: 80),
         ),
       ),
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppHeader(),
@@ -141,14 +146,14 @@ class DetailsPage extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(40),
                 bottomRight: Radius.circular(40),
               ),
               child: Stack(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(30),
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(selectedItem.path),
@@ -179,7 +184,7 @@ class DetailsPage extends StatelessWidget {
                       children: [
                         Text(
                           selectedItem.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -187,7 +192,8 @@ class DetailsPage extends StatelessWidget {
                         ),
                         Text(
                           selectedItem.location,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                         ),
                       ],
                     ),
@@ -195,15 +201,15 @@ class DetailsPage extends StatelessWidget {
                   AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    iconTheme: IconThemeData(color: Colors.white),
-                    title: Center(
+                    iconTheme: const IconThemeData(color: Colors.white),
+                    title: const Center(
                       child: Icon(Icons.terrain, color: Colors.white, size: 40),
                     ),
                     actions: [
                       Container(
-                        margin: EdgeInsets.only(right: 10),
-                        child:
-                            Icon(Icons.pending, color: Colors.white, size: 30),
+                        margin: const EdgeInsets.only(right: 10),
+                        child: const Icon(Icons.pending,
+                            color: Colors.white, size: 30),
                       ),
                     ],
                   ),
@@ -225,7 +231,7 @@ class DetailsPage extends StatelessWidget {
                         child: Text(
                           'About ${selectedItem.name}',
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -233,15 +239,15 @@ class DetailsPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, bottom: 20),
                         child: Text('${selectedItem.description}',
-                            style: TextStyle(fontSize: 12)),
+                            style: const TextStyle(fontSize: 12)),
                       ),
                     ],
                   ),
                 ),
-                DetailsBottomActions(),
+                const DetailsBottomActions(),
               ],
             ),
           ),
@@ -259,7 +265,7 @@ class DetailsBottomActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
       child: Row(
         children: [
           Expanded(
@@ -271,8 +277,8 @@ class DetailsBottomActions extends StatelessWidget {
                 splashColor: Colors.white.withOpacity(0.2),
                 onTap: () {},
                 child: Container(
-                  padding: EdgeInsets.all(21),
-                  child: Text(
+                  padding: const EdgeInsets.all(21),
+                  child: const Text(
                     'Book Now',
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
@@ -282,14 +288,14 @@ class DetailsBottomActions extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10),
-            padding: EdgeInsets.all(15),
+            margin: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.white,
               border: Border.all(color: mainColor, width: 2),
             ),
-            child: Icon(Icons.turned_in_not, color: mainColor, size: 25),
+            child: const Icon(Icons.turned_in_not, color: mainColor, size: 25),
           ),
         ],
       ),
@@ -298,10 +304,12 @@ class DetailsBottomActions extends StatelessWidget {
 }
 
 class AppHeader extends StatelessWidget {
+  const AppHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 30, top: 30, right: 30),
+      padding: const EdgeInsets.only(left: 30, top: 30, right: 30),
       child: Row(
         children: [
           ClipOval(
@@ -311,8 +319,8 @@ class AppHeader extends StatelessWidget {
                 height: 50,
                 fit: BoxFit.cover),
           ),
-          SizedBox(width: 20),
-          Column(
+          const SizedBox(width: 20),
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -333,18 +341,20 @@ class AppHeader extends StatelessWidget {
 }
 
 class AppSearch extends StatelessWidget {
+  const AppSearch({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Discover',
             style: TextStyle(fontWeight: FontWeight.w900, fontSize: 25),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // rest of the code omitted for brevity
           Row(
@@ -352,11 +362,11 @@ class AppSearch extends StatelessWidget {
               Expanded(
                 child: Container(
                   height: 50,
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(10)),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Icon(Icons.search, color: Colors.grey),
                       SizedBox(width: 10),
@@ -369,14 +379,14 @@ class AppSearch extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.only(left: 10),
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
                   color: mainColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.tune, color: Colors.white),
+                child: const Icon(Icons.tune, color: Colors.white),
               )
             ],
           )
@@ -387,9 +397,11 @@ class AppSearch extends StatelessWidget {
 }
 
 class AppMountListView extends StatelessWidget {
+  const AppMountListView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -406,8 +418,8 @@ class AppMountListView extends StatelessWidget {
               },
               child: Container(
                 alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(10),
                 width: 150,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -421,12 +433,12 @@ class AppMountListView extends StatelessWidget {
                   children: [
                     Text(
                       currentMount.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       currentMount.location,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     )
                   ],
                 ),
@@ -438,14 +450,16 @@ class AppMountListView extends StatelessWidget {
 }
 
 class AppCategoryList extends StatelessWidget {
+  const AppCategoryList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(20),
-            child: Row(
+            padding: const EdgeInsets.all(20),
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -465,7 +479,7 @@ class AppCategoryList extends StatelessWidget {
           ),
           Container(
             height: 100,
-            margin: EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 10),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: categories.length,
@@ -477,8 +491,8 @@ class AppCategoryList extends StatelessWidget {
 
                 return Container(
                   width: 100,
-                  margin: EdgeInsets.only(top: 10, right: 10),
-                  padding: EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(top: 10, right: 10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: Colors.grey.withOpacity(0.2), width: 2),
@@ -488,7 +502,7 @@ class AppCategoryList extends StatelessWidget {
                     children: [
                       Icon(currentCategory.icon, color: mainColor),
                       Text(currentCategory.category,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 12, fontWeight: FontWeight.bold))
                     ],
                   ),
@@ -503,6 +517,8 @@ class AppCategoryList extends StatelessWidget {
 }
 
 class AppBottomBar extends StatefulWidget {
+  const AppBottomBar({super.key});
+
   @override
   AppBottomBarState createState() => AppBottomBarState();
 }
@@ -522,8 +538,8 @@ class AppBottomBarState extends State<AppBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -542,15 +558,16 @@ class AppBottomBarState extends State<AppBottomBar> {
 
           if (currentBarItem.isSelected) {
             barItemWidget = Container(
-              padding: EdgeInsets.only(left: 15, top: 5, bottom: 5, right: 15),
+              padding:
+                  const EdgeInsets.only(left: 15, top: 5, bottom: 5, right: 15),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: mainColor),
               child: Row(
                 children: [
                   Icon(currentBarItem.icon, color: Colors.white),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(currentBarItem.label,
-                      style: TextStyle(color: Colors.white))
+                      style: const TextStyle(color: Colors.white))
                 ],
               ),
             );
@@ -559,9 +576,9 @@ class AppBottomBarState extends State<AppBottomBar> {
                 icon: Icon(currentBarItem.icon, color: Colors.grey),
                 onPressed: () {
                   setState(() {
-                    barItems.forEach((AppBottomBarItem item) {
+                    for (var item in barItems) {
                       item.isSelected = item == currentBarItem;
-                    });
+                    }
                   });
                 });
           }
@@ -580,17 +597,19 @@ class DetailsRatingBar extends StatelessWidget {
     'Open': '24hrs',
   };
 
+  DetailsRatingBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(
           sampleRatingData.entries.length,
           (index) => Container(
-            padding: EdgeInsets.all(20),
-            margin: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.withOpacity(0.2), width: 2),
               borderRadius: BorderRadius.circular(20),
@@ -599,12 +618,12 @@ class DetailsRatingBar extends StatelessWidget {
               children: [
                 Text(
                   sampleRatingData.entries.elementAt(index).key,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   sampleRatingData.entries.elementAt(index).value,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: mainColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
